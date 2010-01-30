@@ -1,0 +1,18 @@
+{% extends "feedback_base.html" %}
+
+{% block title %}Closed feedback{% endblock %}
+{% block location %}Feedback{% endblock %}
+
+{% block sidebar %}
+    {% include "sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+<h1>Closed feedback</h1>
+
+{% if feedback_list %}
+    {% include "list.html" %}
+{% else %}
+    <p>{% trans "There is currently no closed feedback." %}</p> 
+{% endif %}
+{% endblock %}

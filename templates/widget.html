@@ -1,0 +1,25 @@
+<div id="feedback-widget-close">
+    <img src="{{ media_url }}images/dialog_close.png" alt="X" />
+</div>
+
+<h1>Feedback</h1>
+
+<p class="help-text">We really value your feedback. Please let us know about any issues or ideas you have. Unless marked as private your feedback will apear on the <a href="/feedback/">feedback</a> page and other users will be able to view, comment on and rate it.</p><br />
+
+<form action="/feedback/widget/" id="feedback-widget-form" method="post">
+<table>
+{% for field in form %}
+    {% include "forms/fields.html" %}
+{% endfor %}
+    <tr>
+        <td></td>
+        <td><br /><input type="submit" value="Submit" /></td>
+    </tr>
+
+</table>
+</form>
+<div id="feedback-widget-loading">
+    <img src="{{ media_url }}images/loading.gif" alt="loading..." /> Submitting feedback&hellip;
+</div>
+<div id="feedback-widget-response">
+</div>

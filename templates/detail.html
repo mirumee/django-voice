@@ -1,0 +1,99 @@
+{% extends "feedback_base.html" %}
+
+{% block title %}Feedback{% endblock %}
+{% block location %}Feedback{% endblock %}
+
+
+
+{% block actions %}{% if request.user.is_staff %}<li><a href="edit">Edit &rarr;</a></li>{% endif %}{% endblock %}
+
+
+{% block content %}
+
+{% load gravatar %}
+{% load voting_tags %}
+{% score_for_object feedback as score %}
+{% load comments %}
+
+{% if feedback.duplicate %}
+<div id="feedback-duplicate">Duplicate of <a href="{{ feedback.duplicate.get_absolute_url }}">{{ feedback.duplicate.title }}</a></div>
+<div class="clear"></div>
+{% endif %}
+
+<div class="votes">
+    {{ score.score|default:0 }}
+    <p class="num-votes">from {{ score.num_votes }} Vote{{ score.num_votes|pluralize }}</p>
+    <div class="clear"></div>
+    <div id="vote-down">
+        <form class="vote-button" method="post" action="{{ feedback.get_absolute_url }}down/">
+            <input class="button" type="submit" name="up" value="&minus;1">
+        </form>
+    </div>
+    <div id="vote-up">
+        <form class="vote-button" method="post" action="{{ feedback.get_absolute_url }}up/">
+            <input class="button" type="submit" name="down" value="+1">
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+      
+<h1 id="feedback-detail-heading"><span class="feedback-status-{{ feedback.status }}"> {{ feedback.get_status_display }}</span>{{ feedback.title }} <span class="feedback-type-{{ feedback.feedback_type }}">{{ feedback.get_feedback_type_display }}</span></h1>
+
+<p><span class="feedback-user">{% if feedback.user %}Submitted by: <a href="{{ feedback.user.get_absolute_url }}" class="avatar" title="View profile">{% gravatar feedback.user.username 15 %}</a> <a href="{{ feedback.user.get_absolute_url }}" title="View profile">{{ feedback.user }}</a>{% else %}Submitted anonymously{% endif %}</span> <span class="feedback-date">on {{ feedback.created|date:"d M Y" }}</span></p>
+
+
+<div class="clear"></div>
+<br />
+{% if feedback.description %}<p>{{ feedback.description|urlize|linebreaksbr }}</p>{% endif %}
+
+    
+{% get_comment_count for feedback as comment_count %}
+{% get_comment_list for feedback as comment_list %}
+
+<h2>Comments ({{ comment_count }})</h2>
+
+{% if comment_list %}
+
+<hr />
+
+{% for comment in comment_list %}
+        <div class="message{% if comment.user.is_staff %} staff{% endif %}">
+            <a name="{{ message.id }}"></a>
+            <div class="content">
+                <div class="avatar">
+                    {% gravatar comment.user.username 40 %}
+                </div>
+                {% if comment.user.is_staff %}
+                    <div class="staff">
+                        Staff
+                    </div>
+                {% endif %}
+                <div class="message-content">
+                    <div class="details">From: <strong>{% ifequal comment.user user %}you{% else %}<a href="{{ comment.user.get_absolute_url }}">{{ comment.user }}</a>{% endifequal %}</strong> on {{ comment.submit_date|date:"M d Y" }} at {{ comment.submit_date|date:"fA" }}</div>
+                        <p>{{ comment.comment|urlize|linebreaksbr }}</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+{% endfor %}
+
+{% else %}
+    <p>No one has commented. Have your say.</p>
+{% endif %}
+
+{% if request.user.is_authenticated %}
+<h2>Leave a comment</h2>
+{% get_comment_form for feedback as form %}
+    <form action="{% comment_form_target %}" method="POST"> 
+{{ form.comment }} 
+{{ form.honeypot }} 
+{{ form.content_type }} 
+{{ form.object_pk }} 
+{{ form.timestamp }} 
+{{ form.security_hash }}
+<br /><input type="submit" value="Post comment" id="id_submit" />
+</form> 
+ {% endif %}
+
+
+{% endblock %}

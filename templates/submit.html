@@ -1,0 +1,25 @@
+
+
+{% extends "feedback_base.html" %}
+
+{% block title %}Feedback{% endblock %}
+{% block location %}Feedback{% endblock %}
+
+{% block content %}
+<h1>Feedback</h1>
+
+<p class="help-text">We really value your feedback. Please let us know about any issues or ideas you have. Unless marked as private your feedback will apear on the <a href="/feedback/">feedback</a> page and other users will be able to view, comment on and rate it.</p><br/ >
+
+<form action="/feedback/submit/" method="post">
+<table>
+{% for field in form %}
+    {% include "includes/fields.html" %}
+{% endfor %}
+    <tr>
+        <td></td>
+        <td><br /><input type="submit" value="Submit" /></td>
+    </tr>
+
+</table>
+</form>
+{% endblock %}

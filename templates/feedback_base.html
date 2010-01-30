@@ -1,0 +1,62 @@
+{% extends "container.html" %}
+{% block sectionid %}feedback{% endblock %}
+
+{% block script_base %}
+    <link rel="alternate" type="application/rss+xml" title="{% trans "Latest feedback" %}" href="/feeds/feedback/" />
+{% endblock %}
+
+{% block body %}
+
+<div class="page-center-wrap">
+    <div class="page-center-content">
+        <div id="header">
+            <div id="navigation">
+                <ul>
+                    {% block navigation %}
+                        <li{% ifequal subnav_active 'all' %} class="active"{% endifequal %}><a href="/feedback/">{% trans "All" %}</a></li>
+                        <li{% ifequal subnav_active 'open' %} class="active"{% endifequal %}><a href="/feedback/open/">{% trans "Open" %}</a></li>
+                        <li{% ifequal subnav_active 'closed' %} class="active"{% endifequal %}><a href="/feedback/closed/">{% trans "Closed" %}</a></li>
+                        <li{% ifequal subnav_active 'mine' %} class="active"{% endifequal %}><a href="/feedback/mine/">{% trans "Mine" %}</a></li>
+                        <li class="feed-link"><a href="/feeds/feedback/" title="{% trans "Subscribe to the feedback RSS feed" %}"><img src="{{ media_url }}djangovoice/images/rss.png" alt="RSS" /></a></li>
+                    {% endblock %}
+                </ul>
+            </div>
+            <div id="title">
+                <a href="{% url djangovoice_all %}">{{ site.name }} Feedback</a>
+            </div>
+        </div>
+        <div id="actions">
+            <ul>
+                <li><a href="/feedback/submit/">{% trans "Submit feedback" %}</a></li>
+                {% block actions %}{% endblock %}
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div id="content-wrap">
+            <div id="sidebar">
+                {% block sidebar %}{% endblock %}
+            </div>
+            <div id="content">
+                {% if session_messages %}
+                    <div id="alert-messages">
+                        <ul>
+                        {% autoescape off %}
+                        {% for message in session_messages %}
+                          <li>{{ message|urlize|linebreaksbr|safe }}</li>
+                        {% endfor %}
+                        {% endautoescape %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {% block content %}{% endblock %}
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div id="footer">
+            <p><a href="http://code.google.com/p/django-voice/">Powered by DjangoVoice</a></p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

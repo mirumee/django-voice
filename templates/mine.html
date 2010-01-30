@@ -1,0 +1,18 @@
+{% extends "feedback_base.html" %}
+
+{% block title %}My feedback{% endblock %}
+{% block location %}Feedback{% endblock %}
+
+{% block sidebar %}
+    {% include "sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+<h1>Your feedback</h1>
+
+{% if feedback_list %}
+    {% include "list.html" %}
+{% else %}
+    <p>You have not submitted any feedback yet.</p> 
+{% endif %}
+{% endblock %}
