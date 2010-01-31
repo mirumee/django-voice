@@ -61,51 +61,6 @@ def list(request, list=False, type=False, status=False):
     
     return render_to_response(template, {'feedback_list': feedback_list.object_list, 'pagination': feedback_list, 'list': list, 'status': status, 'type': type, 'navigation_active': list}, context_instance=RequestContext(request))
 
-'''
-def all(request):
-    u = request.user
-    feedback = Feedback.objects.all().order_by('-created')
-    
-    if u.is_staff != True:
-        feedback = feedback.filter(private=False)
-    
-    feedback_list = paginate(feedback, 10, request)
-    
-    return render_to_response('all.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'navigation_active':'all'}, context_instance=RequestContext(request))
-
-
-def open(request):
-    u = request.user
-    feedback = Feedback.objects.filter(status__status='open').order_by('-created')
-    
-    if u.is_staff != True:
-        feedback = feedback.filter(private=False)
-    
-    feedback_list = paginate(feedback, 10, request)
-    
-    return render_to_response('open.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'navigation_active':'open'}, context_instance=RequestContext(request))
-
-def closed(request):
-    u = request.user
-    feedback = Feedback.objects.filter(status__status='closed').order_by('-created')
-    
-    if u.is_staff != True:
-        feedback = feedback.filter(private=False)
-    
-    feedback_list = paginate(feedback, 10, request)
-        
-    return render_to_response('closed.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'navigation_active':'closed'}, context_instance=RequestContext(request))
-
-@login_required
-def mine(request):
-    u = request.user
-    feedback = Feedback.objects.filter(user=u).order_by('-created')
-    
-    feedback_list = paginate(feedback, 10, request)
-        
-    return render_to_response('mine.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'navigation_active':'mine'}, context_instance=RequestContext(request))
-'''
-
 
 @login_required
 def widget(request):

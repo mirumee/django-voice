@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
-#from django.template.defaultfilters import slugify
 
 STATUS_CHOICES = (
     ('open', 'Open'),
@@ -15,8 +14,6 @@ class Status(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="open")
     
     def save(self):
-        #self.slug = slugify(self.title)
-        
         if self.default == True:
             try:
                 default_project = Status.objects.get(default=True)
@@ -32,10 +29,6 @@ class Status(models.Model):
 class Type(models.Model):
     title = models.CharField(max_length=500)
     slug = models.SlugField(max_length=500)
-    
-    def save(self):
-        self.slug = slugify(self.title)
-        super(Type, self).save()
     
     def __unicode__(self):
         return self.title
