@@ -306,26 +306,28 @@ body {
     font-weight: bold;
 }
 
-.feedback-type-idea, .feedback-type-general, .feedback-type-problem {
+.feedback-status {
     font-weight: normal;
     font-size: 11px;
     padding: 2px 7px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     vertical-align: middle;
+    background-color: #d2f4f6;
+    color: #326c6f;
 }
 
-.feedback-type-general {
+.feedback-status-accepted {
     background-color: #d8f4ff;
     color: #3a95c4;
 }
 
-.feedback-type-idea {
+.feedback-status-done {
     background-color: #e4ffbc;
     color: #499e00;
 }
 
-.feedback-type-problem {
+.feedback-status-new {
     background-color: #ffd8d8;
     color: #ff4e4e;
 }
@@ -345,28 +347,29 @@ body {
     margin: 0 5px;
 }
 
-.feedback-status-new, .feedback-status-accepted, .feedback-status-done, .feedback-status-wontdo, .feedback-status-duplicate {
+.feedback-type {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     padding: 3px 8px;
     color: #ffffff;
     font-size: 9px;
     text-transform: uppercase;
+    background-color: #219da4;
 }
 
-.feedback-status-new {
+.feedback-type-problem {
     background-color: #ff4e4e;
 }
-.feedback-status-accepted {
+.feedback-type-general {
     background-color: #499e00;
 }
-.feedback-status-done {
+.feedback-type-idea {
     background-color: #3a95c4;
 }
-.feedback-status-wontdo {
+.feedback-type-wontdo {
     background-color: #a760ff;
 }
-.feedback-status-duplicate {
+.feedback-type-question {
     background-color: #009e8e;
 }
 
@@ -417,7 +420,7 @@ body {
     padding: 10px 0 0 0;
 }
 
-#feedback-detail-heading .feedback-status-new, #feedback-detail-heading .feedback-status-accepted, #feedback-detail-heading .feedback-status-done, #feedback-detail-heading .feedback-status-wontdo, #feedback-detail-heading .feedback-status-duplicate {
+#feedback-detail-heading .feedback-type {
     margin-right: 10px;
     vertical-align: middle;
 }
