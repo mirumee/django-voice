@@ -1,6 +1,6 @@
 <h4>Status</h4>
 {% load get_status_menu %}
-{% get_status_list %}
+{% get_status_list list %}
 <ul>
     <li{% ifequal status "all" %} class="active"{% endifequal %}><a href="{% url list_type_status list type "all" %}">All</a></li>
     {% for s in status_list %}
