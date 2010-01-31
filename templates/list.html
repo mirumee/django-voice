@@ -18,8 +18,8 @@
     
     <tr>
         <td class="votes"><div>{{ score.score|default:0 }}</div></td>
-        <td class="status"><span class="feedback-status-{{ feedback.status }}">{{ feedback.get_status_display }}</span></td>
-        <td class="details"><h3><a href="{{ feedback.get_absolute_url }}">{{ feedback.title }}</a> <span class="feedback-type-{{ feedback.feedback_type }}">{{ feedback.get_feedback_type_display }}</span></h3><p> <span class="feedback-comments"><a href="{{ feedback.get_absolute_url }}">{{ comment_count }} comment{{ comment_count|pluralize }}</a></span> <span class="feedback-user">{% if feedback.user %}Submitted by: <a href="{{ feedback.user.get_absolute_url }}" class="avatar" title="View profile">{% gravatar feedback.user.username 15 %}</a> <a href="{{ feedback.user.get_absolute_url }}" title="View profile">{{ feedback.user }}</a>{% else %}Submitted anonymously</span>{% endif %} <span class="feedback-date">on {{ feedback.created|date:"d M Y" }}</span></p></td>
+        <td class="status"><span class="feedback-status-{{ feedback.type.slug }}">{{ feedback.type.title }}</span></td>
+        <td class="details"><h3><a href="{{ feedback.get_absolute_url }}">{{ feedback.title }}</a> <span class="feedback-type-{{ feedback.status.slug }}">{{ feedback.status.title }}</span></h3><p> <span class="feedback-comments"><a href="{{ feedback.get_absolute_url }}">{{ comment_count }} comment{{ comment_count|pluralize }}</a></span> <span class="feedback-user">{% if feedback.user %}Submitted by: <a href="{{ feedback.user.get_absolute_url }}" class="avatar" title="View profile">{% gravatar feedback.user.username 15 %}</a> <a href="{{ feedback.user.get_absolute_url }}" title="View profile">{{ feedback.user }}</a>{% else %}Submitted anonymously</span>{% endif %} <span class="feedback-date">on {{ feedback.created|date:"d M Y" }}</span></p></td>
         {% if feedback.private %}
             <td class="feedback-private">PRIVATE</td>
         {% endif %}

@@ -13,16 +13,16 @@
             <div id="navigation">
                 <ul>
                     {% block navigation %}
-                        <li{% ifequal subnav_active 'all' %} class="active"{% endifequal %}><a href="/feedback/">{% trans "All" %}</a></li>
-                        <li{% ifequal subnav_active 'open' %} class="active"{% endifequal %}><a href="/feedback/open/">{% trans "Open" %}</a></li>
-                        <li{% ifequal subnav_active 'closed' %} class="active"{% endifequal %}><a href="/feedback/closed/">{% trans "Closed" %}</a></li>
-                        <li{% ifequal subnav_active 'mine' %} class="active"{% endifequal %}><a href="/feedback/mine/">{% trans "Mine" %}</a></li>
+                        <li{% ifequal navigation_active 'all' %} class="active"{% endifequal %}><a href="/feedback/all/">{% trans "All" %}</a></li>
+                        <li{% ifequal navigation_active 'open' %} class="active"{% endifequal %}><a href="/feedback/open/">{% trans "Open" %}</a></li>
+                        <li{% ifequal navigation_active 'closed' %} class="active"{% endifequal %}><a href="/feedback/closed/">{% trans "Closed" %}</a></li>
+                        <li{% ifequal navigation_active 'mine' %} class="active"{% endifequal %}><a href="/feedback/mine/">{% trans "Mine" %}</a></li>
                         <li class="feed-link"><a href="/feeds/feedback/" title="{% trans "Subscribe to the feedback RSS feed" %}"><img src="{{ media_url }}djangovoice/images/rss.png" alt="RSS" /></a></li>
                     {% endblock %}
                 </ul>
             </div>
             <div id="title">
-                <a href="{% url djangovoice_all %}">{{ site.name }} Feedback</a>
+                <a href="{% url djangovoice_home %}">{{ site.name }} Feedback</a>
             </div>
         </div>
         <div id="actions">

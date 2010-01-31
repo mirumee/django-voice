@@ -22,9 +22,46 @@ def detail(request, object_id):
         if u.is_staff != True and u != feedback.user:
             raise Http404
     
-    return render_to_response('detail.html', {'feedback': feedback, 'mainnav_active':'feedback'}, context_instance=RequestContext(request))
+    return render_to_response('detail.html', {'feedback': feedback}, context_instance=RequestContext(request))
 
 
+def list(request, list=False, type=False, status=False):
+    u = request.user
+    feedback = Feedback.objects.all().order_by('-created')
+    
+    if not list:
+        list = "open"
+    
+    if list == "all":
+        template = 'all.html'
+    elif list == "open":
+        template = 'open.html'
+        feedback = feedback.filter(status__status='open')
+    elif list == "closed":
+        template = 'closed.html'
+        feedback = feedback.filter(status__status='closed')
+    elif list == "mine":
+        template = 'mine.html'
+        feedback = feedback.filter(user=u)
+    
+    if not type:
+        type = "all"
+    elif type != "all":
+        feedback = feedback.filter(type__slug=type)
+    
+    if not status:
+        status = "all"
+    elif status != "all":
+        feedback = feedback.filter(status__slug=status)
+    
+    if u.is_staff != True:
+        feedback = feedback.filter(private=False)
+    
+    feedback_list = paginate(feedback, 10, request)
+    
+    return render_to_response(template, {'feedback_list': feedback_list.object_list, 'pagination': feedback_list, 'list': list, 'status': status, 'type': type, 'navigation_active': list}, context_instance=RequestContext(request))
+
+'''
 def all(request):
     u = request.user
     feedback = Feedback.objects.all().order_by('-created')
@@ -34,30 +71,30 @@ def all(request):
     
     feedback_list = paginate(feedback, 10, request)
     
-    return render_to_response('all.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'subnav_active':'all', 'mainnav_active':'feedback'}, context_instance=RequestContext(request))
+    return render_to_response('all.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'navigation_active':'all'}, context_instance=RequestContext(request))
 
 
 def open(request):
     u = request.user
-    feedback = Feedback.objects.exclude(status='done').exclude(status='wontdo').exclude(status='duplicate').order_by('-created')
+    feedback = Feedback.objects.filter(status__status='open').order_by('-created')
     
     if u.is_staff != True:
         feedback = feedback.filter(private=False)
     
     feedback_list = paginate(feedback, 10, request)
     
-    return render_to_response('open.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'subnav_active':'open', 'mainnav_active':'feedback'}, context_instance=RequestContext(request))
+    return render_to_response('open.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'navigation_active':'open'}, context_instance=RequestContext(request))
 
 def closed(request):
     u = request.user
-    feedback = Feedback.objects.exclude(status='new').exclude(status='accepted').order_by('-created')
+    feedback = Feedback.objects.filter(status__status='closed').order_by('-created')
     
     if u.is_staff != True:
         feedback = feedback.filter(private=False)
     
     feedback_list = paginate(feedback, 10, request)
         
-    return render_to_response('closed.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'subnav_active':'closed', 'mainnav_active':'feedback'}, context_instance=RequestContext(request))
+    return render_to_response('closed.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'navigation_active':'closed'}, context_instance=RequestContext(request))
 
 @login_required
 def mine(request):
@@ -66,8 +103,8 @@ def mine(request):
     
     feedback_list = paginate(feedback, 10, request)
         
-    return render_to_response('mine.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'subnav_active':'mine', 'mainnav_active':'feedback'}, context_instance=RequestContext(request))
-
+    return render_to_response('mine.html', {'feedback_list': feedback_list.object_list, 'pagination':feedback_list, 'navigation_active':'mine'}, context_instance=RequestContext(request))
+'''
 
 
 @login_required
@@ -110,7 +147,7 @@ def submit(request):
     else:
         form = WidgetForm()
     
-    return render_to_response('submit.html', {'form': form, 'mainnav_active':'feedback'}, context_instance=RequestContext(request))
+    return render_to_response('submit.html', {'form': form}, context_instance=RequestContext(request))
 
 @login_required
 def edit(request, object_id):
@@ -125,7 +162,7 @@ def edit(request, object_id):
             return HttpResponseRedirect(feedback.get_absolute_url())
     else:
         form = EditForm(instance=feedback)
-    return render_to_response('edit.html', {'form': form, 'feedback':feedback, 'mainnav_active':'feedback'}, context_instance=RequestContext(request))
+    return render_to_response('edit.html', {'form': form, 'feedback':feedback}, context_instance=RequestContext(request))
 
 
 

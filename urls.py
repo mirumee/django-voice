@@ -12,10 +12,13 @@ feedback_dict = {
 
 
 urlpatterns = patterns('',
-    url(r'^$', 'djangovoice.views.all', name="djangovoice_all"),
-    (r'^open/$', 'djangovoice.views.open'),
-    (r'^closed/$', 'djangovoice.views.closed'),
-    (r'^mine/$', 'djangovoice.views.mine'),
+    url(r'^$', 'djangovoice.views.list', name="djangovoice_home"),
+    (r'^(?P<list>all|open|closed|mine)/$', 'djangovoice.views.list'),
+    url(r'^(?P<list>all|open|closed|mine)/(?P<type>[-\w]+)/$', 'djangovoice.views.list', name='list_type'),
+    url(r'^(?P<list>all|open|closed|mine)/(?P<type>[-\w]+)/(?P<status>[-\w]+)/$', 'djangovoice.views.list', name='list_type_status'),
+    #(r'^open/$', 'djangovoice.views.open'),
+    #(r'^closed/$', 'djangovoice.views.closed'),
+    #(r'^mine/$', 'djangovoice.views.mine'),
     (r'^widget/$', 'djangovoice.views.widget'),
     (r'^submit/$', 'djangovoice.views.submit'),
     (r'^(?P<object_id>\d+)/$', 'djangovoice.views.detail'),
