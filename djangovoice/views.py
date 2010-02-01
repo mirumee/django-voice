@@ -32,16 +32,16 @@ def list(request, list=False, type=False, status=False):
     if not list:
         list = "open"
     
-    if list == "all":
-        template = 'all.html'
-    elif list == "open":
-        template = 'open.html'
+    title = "Feedback"
+    
+    if list == "open":
+        title = "Open Feedback"
         feedback = feedback.filter(status__status='open')
     elif list == "closed":
-        template = 'closed.html'
+        title = "Closed Feedback"
         feedback = feedback.filter(status__status='closed')
     elif list == "mine":
-        template = 'mine.html'
+        title = "My Feedback"
         feedback = feedback.filter(user=u)
     
     if not type:
@@ -59,7 +59,7 @@ def list(request, list=False, type=False, status=False):
     
     feedback_list = paginate(feedback, 10, request)
     
-    return render_to_response('djangovoice/%s' % template, {'feedback_list': feedback_list.object_list, 'pagination': feedback_list, 'list': list, 'status': status, 'type': type, 'navigation_active': list}, context_instance=RequestContext(request))
+    return render_to_response('djangovoice/list.html', {'feedback_list': feedback_list.object_list, 'pagination': feedback_list, 'list': list, 'status': status, 'type': type, 'navigation_active': list, 'title': title,}, context_instance=RequestContext(request))
 
 
 @login_required
