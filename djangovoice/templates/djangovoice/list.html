@@ -36,7 +36,23 @@
     {% endfor %}
     </table>
 
-    {% include "djangovoice/includes/pagination.html" %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if pagination.has_previous %}
+                <a href="?page=1" id="pagination-first-page">&laquo; {% trans "first" %}</a>
+                <a href="?page={{ pagination.previous_page_number }}" id="pagination-previous-page">&larr; {% trans "previous" %}</a>
+            {% endif %}
+
+            <span class="current">
+                {% trans "Page" %} {{ pagination.number }} {% trans "of" %} {{ pagination.paginator.num_pages }}
+            </span>
+
+            {% if pagination.has_next %}
+                <a href="?page={{ pagination.next_page_number }}" id="pagination-next-page">{% trans "next" %} &rarr;</a>
+                <a href="?page={{ pagination.paginator.num_pages }}" id="pagination-last-page">{% trans "last" %} &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 
 {% else %}
     <p>No-one has contributed any feedback yet. Be the first and <a href="/feedback/submit/">submit some feedback</a>!</p> 
