@@ -1,16 +1,16 @@
-{% extends "feedback_base.html" %}
+{% extends "djangovoice/feedback_base.html" %}
 
 {% block title %}Feedback{% endblock %}
 
 {% block sidebar %}
-    {% include "sidebar.html" %}
+    {% include "djangovoice/sidebar.html" %}
 {% endblock %}
 
 {% block content %}
 <h1>All Feedback</h1>
 
 {% if feedback_list %}
-    {% include "list.html" %}
+    {% include "djangovoice/list.html" %}
 {% else %}
     <p>No-one has contributed any feedback yet. Be the first and <a href="/feedback/submit/">submit some feedback</a>!</p> 
 {% endif %}

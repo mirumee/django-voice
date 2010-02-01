@@ -22,7 +22,7 @@ def detail(request, object_id):
         if u.is_staff != True and u != feedback.user:
             raise Http404
     
-    return render_to_response('detail.html', {'feedback': feedback}, context_instance=RequestContext(request))
+    return render_to_response('djangovoice/detail.html', {'feedback': feedback}, context_instance=RequestContext(request))
 
 
 def list(request, list=False, type=False, status=False):
@@ -59,7 +59,7 @@ def list(request, list=False, type=False, status=False):
     
     feedback_list = paginate(feedback, 10, request)
     
-    return render_to_response(template, {'feedback_list': feedback_list.object_list, 'pagination': feedback_list, 'list': list, 'status': status, 'type': type, 'navigation_active': list}, context_instance=RequestContext(request))
+    return render_to_response('djangovoice/%s' % template, {'feedback_list': feedback_list.object_list, 'pagination': feedback_list, 'list': list, 'status': status, 'type': type, 'navigation_active': list}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -82,7 +82,7 @@ def widget(request):
         return HttpResponse(data, mimetype='application/json')
     else:
         form = WidgetForm()
-    return render_to_response('widget.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('djangovoice/widget.html', {'form': form}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -102,7 +102,7 @@ def submit(request):
     else:
         form = WidgetForm()
     
-    return render_to_response('submit.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('djangovoice/submit.html', {'form': form}, context_instance=RequestContext(request))
 
 @login_required
 def edit(request, object_id):
@@ -117,7 +117,7 @@ def edit(request, object_id):
             return HttpResponseRedirect(feedback.get_absolute_url())
     else:
         form = EditForm(instance=feedback)
-    return render_to_response('edit.html', {'form': form, 'feedback':feedback}, context_instance=RequestContext(request))
+    return render_to_response('djangovoice/edit.html', {'form': form, 'feedback':feedback}, context_instance=RequestContext(request))
 
 
 

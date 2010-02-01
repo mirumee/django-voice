@@ -1,6 +1,6 @@
 
 
-{% extends "feedback_base.html" %}
+{% extends "djangovoice/feedback_base.html" %}
 
 {% block title %}Feedback{% endblock %}
 {% block location %}Feedback{% endblock %}
@@ -11,7 +11,7 @@
 <form action="/feedback/submit/" method="post">
 <table>
 {% for field in form %}
-    {% include "includes/fields.html" %}
+    {% include "djangovoice/includes/fields.html" %}
 {% endfor %}
     <tr>
         <td></td>
