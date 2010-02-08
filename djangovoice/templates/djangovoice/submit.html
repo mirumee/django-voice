@@ -8,7 +8,7 @@
 {% block content %}
 <h1>Feedback</h1>
 
-<form action="/feedback/submit/" method="post">
+<form action="{% url djangovoice_submit %}" method="post">
 <table>
 {% for field in form %}
     {% include "djangovoice/includes/fields.html" %}

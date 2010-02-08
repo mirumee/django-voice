@@ -2,17 +2,17 @@
 {% load get_status_menu %}
 {% get_status_list list %}
 <ul>
-    <li{% ifequal status "all" %} class="active"{% endifequal %}><a href="{% url list_type_status list type "all" %}">All</a></li>
+    <li{% ifequal status "all" %} class="active"{% endifequal %}><a href="{% url djangovoice_list_type_status list type "all" %}">All</a></li>
     {% for s in status_list %}
-        <li{% ifequal status s.slug %} class="active"{% endifequal %}><a href="{% url list_type_status list type s.slug %}">{{ s.title }}</a></li>
+        <li{% ifequal status s.slug %} class="active"{% endifequal %}><a href="{% url djangovoice_list_type_status list type s.slug %}">{{ s.title }}</a></li>
     {% endfor %}
 </ul>
 <h4>Type</h4>
 {% load get_type_menu %}
 {% get_type_list %}
 <ul>
-    <li{% ifequal type "all" %} class="active"{% endifequal %}><a href="{% url list_type list "all" %}">All</a></li>
+    <li{% ifequal type "all" %} class="active"{% endifequal %}><a href="{% url djangovoice_list_type list "all" %}">All</a></li>
     {% for t in type_list %}
-        <li{% ifequal type t.slug %} class="active"{% endifequal %}><a href="{% url list_type list t.slug %}">{{ t.title }}</a></li>
+        <li{% ifequal type t.slug %} class="active"{% endifequal %}><a href="{% url djangovoice_list_type list t.slug %}">{{ t.title }}</a></li>
     {% endfor %}
 </ul>

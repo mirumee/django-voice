@@ -1,0 +1,13 @@
+{% extends "djangovoice/feedback_base.html" %}
+
+{% block title %}Delete{% endblock %}
+
+{% block content %}
+<p>Are you sure you wish to delete this feedback item completely, and all of the comments associated with it?</p>
+
+<p>There is <strong>no way to undo this!</strong></p>
+
+<form action="" method="post">
+    <p><input type="submit" value="{% trans "Delete Permenantly" %}" /> or <a href='../'>leave everything as it is</a>.</p>
+</form>
+{% endblock %}

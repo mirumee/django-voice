@@ -4,9 +4,9 @@
 
 <h1>Feedback</h1>
 
-<p class="help-text">We really value your feedback. Please let us know about any issues or ideas you have. Unless marked as private your feedback will apear on the <a href="/feedback/">feedback</a> page and other users will be able to view, comment on and rate it.</p><br />
+<p class="help-text">We really value your feedback. Please let us know about any issues or ideas you have. Unless marked as private your feedback will apear on the <a href="{% url djangovoice_home %}">feedback</a> page and other users will be able to view, comment on and rate it.</p><br />
 
-<form action="/feedback/widget/" id="feedback-widget-form" method="post">
+<form action="{% url djangovoice_widget %}" id="feedback-widget-form" method="post">
 <table>
 {% for field in form %}
     {% include "djangovoice/forms/fields.html" %}

@@ -3,8 +3,8 @@
 <head>
     <title>{% block title %}{% endblock %}{% block title_default %} | DjangoVoice{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" type="image/png" href="{{ media_url }}djangovoice/images/favicon.png" />
-    <link rel="stylesheet" type="text/css" href="{{ media_url }}djangovoice/css/djangovoice.css" />
+    <link rel="shortcut icon" type="image/png" href="{{ MEDIA_URL }}djangovoice/images/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}djangovoice/css/djangovoice.css" />
     {% block script_base %}{% endblock %}
     {% block script %}{% endblock %}
 </head>

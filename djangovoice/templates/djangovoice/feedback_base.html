@@ -13,10 +13,10 @@
             <div id="navigation">
                 <ul>
                     {% block navigation %}
-                        <li{% ifequal navigation_active 'all' %} class="active"{% endifequal %}><a href="/feedback/all/">{% trans "All" %}</a></li>
-                        <li{% ifequal navigation_active 'open' %} class="active"{% endifequal %}><a href="/feedback/open/">{% trans "Open" %}</a></li>
-                        <li{% ifequal navigation_active 'closed' %} class="active"{% endifequal %}><a href="/feedback/closed/">{% trans "Closed" %}</a></li>
-                        <li{% ifequal navigation_active 'mine' %} class="active"{% endifequal %}><a href="/feedback/mine/">{% trans "Mine" %}</a></li>
+                        <li{% ifequal navigation_active 'all' %} class="active"{% endifequal %}><a href="{% url djangovoice_list 'all' %}">{% trans "All" %}</a></li>
+                        <li{% ifequal navigation_active 'open' %} class="active"{% endifequal %}><a href="{% url djangovoice_list 'open' %}">{% trans "Open" %}</a></li>
+                        <li{% ifequal navigation_active 'closed' %} class="active"{% endifequal %}><a href="{% url djangovoice_list 'closed' %}">{% trans "Closed" %}</a></li>
+                        <li{% ifequal navigation_active 'mine' %} class="active"{% endifequal %}><a href="{% url djangovoice_list 'mine' %}">{% trans "Mine" %}</a></li>
                         <li class="feed-link"><a href="/feeds/feedback/" title="{% trans "Subscribe to the feedback RSS feed" %}"><img src="{{ media_url }}djangovoice/images/rss.png" alt="RSS" /></a></li>
                     {% endblock %}
                 </ul>
@@ -27,7 +27,7 @@
         </div>
         <div id="actions">
             <ul>
-                <li><a href="/feedback/submit/">{% trans "Submit feedback" %}</a></li>
+                <li><a href="{% url djangovoice_submit %}">{% trans "Submit feedback" %}</a></li>
                 {% block actions %}{% endblock %}
             </ul>
             <div class="clear"></div>

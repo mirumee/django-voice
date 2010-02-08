@@ -12,6 +12,7 @@ from djangovoice.models import Feedback
 from djangovoice.forms import *
 from djangovoice.utils import paginate
 from django.utils import simplejson
+from django.core.urlresolvers import reverse
 
 
 def detail(request, object_id):
@@ -118,6 +119,17 @@ def edit(request, object_id):
     else:
         form = EditForm(instance=feedback)
     return render_to_response('djangovoice/edit.html', {'form': form, 'feedback':feedback}, context_instance=RequestContext(request))
+
+@login_required
+def delete(request, object_id):
+    u = request.user
+    if not u.is_staff:
+        raise Http404
+    feedback = get_object_or_404(Feedback, pk=object_id)
+    if request.method == 'POST':
+        feedback.delete()
+        return HttpResponseRedirect(reverse('feedback_home'))
+    return render_to_response('djangovoice/delete.html', {'feedback':feedback}, context_instance=RequestContext(request))
 
 
 

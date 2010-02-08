@@ -4,7 +4,10 @@
 
 
 
-{% block actions %}{% if request.user.is_staff %}<li><a href="edit">Edit &rarr;</a></li>{% endif %}{% endblock %}
+{% block actions %}{% if request.user.is_staff %}
+    <li><a href="edit">Edit &rarr;</a></li>
+    <li><a href="delete">Delete &rarr;</a></li>
+{% endif %}{% endblock %}
 
 
 {% block content %}
@@ -84,6 +87,7 @@
 <h2>Leave a comment</h2>
 {% get_comment_form for feedback as form %}
     <form action="{% comment_form_target %}" method="POST"> 
+    <input type="hidden" name="next" value="{{ feedback.get_absolute_url }}" />
 {{ form.comment }} 
 {{ form.honeypot }} 
 {{ form.content_type }} 
