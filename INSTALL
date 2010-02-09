@@ -1,0 +1,36 @@
+###############
+Django Voice
+###############
+
+REQUIREMENTS
+============
+
+Firstly, you must have a working Django installation. If you cannot access 
+the Django administration screen you won't be able to get DjangoVoice going.
+
+The following applications need to be installed in your PYTHONPATH prior to 
+installing and using djangovoice, and they must be listed in your
+INSTALLED_APPS setting:
+
+    django-voting http://code.google.com/p/django-voting/
+    django-gravatar http://code.google.com/p/django-gravatar/
+
+In addition, the following applications (which are included in the core 
+Django distribution) need to be installed and listed under INSTALLED_APPS:
+
+    django.contrib.auth
+    django.contrib.comments
+
+INSTALLATION
+============
+
+    1. Install Django
+    2. Install the above dependencies
+    3. Place the 'djangovoice' folder in your PYTHONPATH
+    4. Add 'djangovoice' to your INSTALLED_APPS setting in settings.py
+    5. Add djangovoice to your urlconf in urls.py:
+        
+        url(r'^feedback/', include('djangovoice.urls')),
+
+    6. Run './manage.py syncdb' to create the required database tables
+    7. Browse to http://yoursite/feedback/ - easy!

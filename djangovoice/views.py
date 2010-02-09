@@ -16,18 +16,16 @@ from django.core.urlresolvers import reverse
 
 
 def detail(request, object_id):
-    u = request.user
     feedback = get_object_or_404(Feedback, pk=object_id)
     
     if feedback.private == True:
-        if u.is_staff != True and u != feedback.user:
-            raise Http404
+        if request.user.is_staff != True and request.user != feedback.user:
+            return Http404
     
     return render_to_response('djangovoice/detail.html', {'feedback': feedback}, context_instance=RequestContext(request))
 
 
 def list(request, list=False, type=False, status=False):
-    u = request.user
     feedback = Feedback.objects.all().order_by('-created')
     
     if not list:
@@ -43,7 +41,7 @@ def list(request, list=False, type=False, status=False):
         feedback = feedback.filter(status__status='closed')
     elif list == "mine":
         title = "My Feedback"
-        feedback = feedback.filter(user=u)
+        feedback = feedback.filter(user=request.user)
     
     if not type:
         type = "all"
@@ -55,7 +53,7 @@ def list(request, list=False, type=False, status=False):
     elif status != "all":
         feedback = feedback.filter(status__slug=status)
     
-    if u.is_staff != True:
+    if request.user.is_staff != True:
         feedback = feedback.filter(private=False)
     
     feedback_list = paginate(feedback, 10, request)
@@ -67,14 +65,13 @@ def list(request, list=False, type=False, status=False):
 def widget(request):
     if request.method == 'POST':
         form = WidgetForm(request.POST)
-        u = request.user
         if form.is_valid():
             feedback = form.save(commit=False)
             try:
                 if form.data['anonymous'] != "on":
-                    feedback.user = u
+                    feedback.user = request.user
             except:
-                    feedback.user = u
+                    feedback.user = request.user
             feedback.save()
             data = simplejson.dumps({'url':feedback.get_absolute_url(), 'errors': False})
         else:
@@ -90,14 +87,13 @@ def widget(request):
 def submit(request):
     if request.method == 'POST':
         form = WidgetForm(request.POST)
-        u = request.user
         if form.is_valid():
             feedback = form.save(commit=False)
             try:
                 if form.data['anonymous'] != "on":
-                    feedback.user = u
+                    feedback.user = request.user
             except:
-                    feedback.user = u
+                    feedback.user = request.user
             feedback.save()
             return HttpResponseRedirect(feedback.get_absolute_url())
     else:
@@ -107,25 +103,29 @@ def submit(request):
 
 @login_required
 def edit(request, object_id):
-    u = request.user
-    if not u.is_staff:
-        raise Http404
-    feedback = Feedback.objects.get(id=object_id)
+    feedback = get_object_or_404(Feedback, pk=object_id)
+
+    if request.user.is_staff:
+        form_class = EditForm
+    elif request.user == feedback.user:
+        form_class = WidgetForm
+    else:
+        return Http404
+
     if request.method == 'POST':
-        form = EditForm(request.POST, instance=feedback)
+        form = form_class(request.POST, instance=feedback)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(feedback.get_absolute_url())
     else:
-        form = EditForm(instance=feedback)
+        form = form_class(instance=feedback)
     return render_to_response('djangovoice/edit.html', {'form': form, 'feedback':feedback}, context_instance=RequestContext(request))
 
 @login_required
 def delete(request, object_id):
-    u = request.user
-    if not u.is_staff:
-        raise Http404
     feedback = get_object_or_404(Feedback, pk=object_id)
+    if request.user != feedback.user and not request.user.is_staff:
+        return Http404
     if request.method == 'POST':
         feedback.delete()
         return HttpResponseRedirect(reverse('feedback_home'))

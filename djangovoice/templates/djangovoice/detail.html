@@ -2,11 +2,14 @@
 
 {% block title %}Feedback{% endblock %}
 
-
-
 {% block actions %}{% if request.user.is_staff %}
-    <li><a href="edit">Edit &rarr;</a></li>
-    <li><a href="delete">Delete &rarr;</a></li>
+    <li><a href="{% url djangovoice_edit feedback.id %}">Edit &rarr;</a></li>
+    <li><a href="{% url djangovoice_delete feedback.id %}">Delete &rarr;</a></li>
+{% else %}
+    {% ifequal request.user feedback.user %}
+        <li><a href="{% url djangovoice_edit feedback.id %}">Edit &rarr;</a></li>
+        <li><a href="{% url djangovoice_delete feedback.id %}">Delete &rarr;</a></li>
+    {% endifequal %}
 {% endif %}{% endblock %}
 
 
