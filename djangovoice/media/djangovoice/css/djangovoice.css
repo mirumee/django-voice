@@ -402,6 +402,14 @@ body {
     margin-right: 2px;
 }
 
+#feedback #vote-down input[type="submit"]:hover {
+    background-color: #c73700;
+}
+
+#feedback #vote-up input[type="submit"]:hover {
+    background-color: #73c700;
+}
+
 #feedback #vote-up, #feedback #vote-down {
     float: left;
 }
