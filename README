@@ -16,3 +16,11 @@ Originally built for Verb (http://verbapp.com), and can be seen working
 at Verb feedback (that is a live site, please do not use it to try out 
 the system). 
 
+
+3. REQUIREMENTS
+===============
+
+* django.contrib.auth
+* django.contrib.comments
+* django-gravatar
+* django-voting
