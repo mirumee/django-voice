@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-16 15:18+0100\n"
-"PO-Revision-Date: 2010-02-16 15:23+0100\n"
+"POT-Creation-Date: 2010-02-17 12:23+0100\n"
+"PO-Revision-Date: 2010-02-17 12:24+0100\n"
 "Last-Translator: Patryk Zawadzki <patrys@pld-linux.org>\n"
 "Language-Team: Polski <patrys@pld-linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "domyślny"
 msgid "New feedback will have this status"
 msgstr "Nowe zgłoszenia będą miały ten status"
 
-#: models.py:15 models.py:18
+#: models.py:15 models.py:18 models.py:54
 msgid "status"
 msgstr "status"
 
@@ -43,7 +43,7 @@ msgstr "status"
 msgid "statuses"
 msgstr "statusy"
 
-#: models.py:39
+#: models.py:39 models.py:47
 msgid "type"
 msgstr "rodzaj"
 
@@ -121,15 +121,16 @@ msgstr[1] "%(votes)s głosy"
 msgstr[2] "%(votes)s głosów"
 msgstr[3] "%(votes)s głosów"
 
-#: templates/djangovoice/detail.html:49
+#: templates/djangovoice/detail.html:49 templates/djangovoice/list.html:31
 msgid "Submitted by"
 msgstr "Zgłoszone przez"
 
-#: templates/djangovoice/detail.html:49
+#: templates/djangovoice/detail.html:49 templates/djangovoice/list.html:31
 msgid "Submitted anonymously"
 msgstr "Zgłoszone anonimowo"
 
 #: templates/djangovoice/detail.html:49 templates/djangovoice/detail.html:78
+#: templates/djangovoice/list.html:31
 #, python-format
 msgid "on %(date)s"
 msgstr "%(date)s"
@@ -137,6 +138,10 @@ msgstr "%(date)s"
 #: templates/djangovoice/detail.html:59
 msgid "Comments"
 msgstr "Komentarze"
+
+#: templates/djangovoice/detail.html:74
+msgid "Staff"
+msgstr "Pracownik"
 
 #: templates/djangovoice/detail.html:78
 msgid "From"
@@ -187,6 +192,10 @@ msgstr "Odzew"
 msgid "Submit feedback"
 msgstr "Wyślij zgłoszenie"
 
+#: templates/djangovoice/list.html:33
+msgid "PRIVATE"
+msgstr "PRYWATNE"
+
 #: templates/djangovoice/list.html:42
 msgid "first"
 msgstr "pierwsza"
@@ -210,6 +219,15 @@ msgstr "następna"
 #: templates/djangovoice/list.html:52
 msgid "last"
 msgstr "ostatnia"
+
+#: templates/djangovoice/list.html:58
+#, python-format
+msgid ""
+"No-one has contributed any feedback yet. Be the first and <a href=\"%(url)s"
+"\">submit some feedback</a>!"
+msgstr ""
+"Nikt jeszcze nic tutaj nie zgłosił. Bądź pierwszy <a href=\"%(url)s\">wyślij "
+"zgłoszenie</a>!"
 
 #: templates/djangovoice/submit.html:18
 msgid "Submit"
