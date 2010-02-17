@@ -13,7 +13,7 @@ from djangovoice.forms import *
 from djangovoice.utils import paginate
 from django.utils import simplejson
 from django.core.urlresolvers import reverse
-
+from django.utils.translation import ugettext as _
 
 def detail(request, object_id):
     feedback = get_object_or_404(Feedback, pk=object_id)
@@ -31,16 +31,16 @@ def list(request, list=False, type=False, status=False):
     if not list:
         list = "open"
     
-    title = "Feedback"
+    title = _("Feedback")
     
     if list == "open":
-        title = "Open Feedback"
+        title = _("Open Feedback")
         feedback = feedback.filter(status__status='open')
     elif list == "closed":
-        title = "Closed Feedback"
+        title = _("Closed Feedback")
         feedback = feedback.filter(status__status='closed')
     elif list == "mine":
-        title = "My Feedback"
+        title = _("My Feedback")
         if request.user.is_authenticated():
             feedback = feedback.filter(user=request.user)
         else:

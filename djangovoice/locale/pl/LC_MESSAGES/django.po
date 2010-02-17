@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-17 12:23+0100\n"
-"PO-Revision-Date: 2010-02-17 12:47+0100\n"
+"POT-Creation-Date: 2010-02-17 13:32+0100\n"
+"PO-Revision-Date: 2010-02-17 13:33+0100\n"
 "Last-Translator: Patryk Zawadzki <patrys@pld-linux.org>\n"
 "Language-Team: Polski <patrys@pld-linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -94,6 +94,22 @@ msgstr "zgłoszenie"
 #: models.py:59
 msgid "feedbacks"
 msgstr "zgłoszenia"
+
+#: views.py:34 templates/djangovoice/feedback_base.html:25
+msgid "Feedback"
+msgstr "Zgłoszenia"
+
+#: views.py:37
+msgid "Open Feedback"
+msgstr "Otwarte zgłoszenia"
+
+#: views.py:40
+msgid "Closed Feedback"
+msgstr "Zamknięte zgłoszenia"
+
+#: views.py:43
+msgid "My Feedback"
+msgstr "Moje zgłoszenia"
 
 #: templates/djangovoice/delete.html:11
 msgid "Delete Permenantly"
@@ -182,10 +198,6 @@ msgstr "Zamknięte"
 #: templates/djangovoice/feedback_base.html:19
 msgid "Mine"
 msgstr "Moje"
-
-#: templates/djangovoice/feedback_base.html:25
-msgid "Feedback"
-msgstr "Odzew"
 
 #: templates/djangovoice/feedback_base.html:30
 #: templates/djangovoice/submit.html:9
