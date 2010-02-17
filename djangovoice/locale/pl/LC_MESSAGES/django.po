@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-17 13:32+0100\n"
-"PO-Revision-Date: 2010-02-17 13:33+0100\n"
+"POT-Creation-Date: 2010-02-17 13:42+0100\n"
+"PO-Revision-Date: 2010-02-17 13:42+0100\n"
 "Last-Translator: Patryk Zawadzki <patrys@pld-linux.org>\n"
 "Language-Team: Polski <patrys@pld-linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -184,6 +184,7 @@ msgid "Latest feedback"
 msgstr "Ostatnie zgłoszenia"
 
 #: templates/djangovoice/feedback_base.html:16
+#: templates/djangovoice/sidebar.html:5 templates/djangovoice/sidebar.html:14
 msgid "All"
 msgstr "Wszystkie"
 
@@ -240,6 +241,14 @@ msgid ""
 msgstr ""
 "Nikt jeszcze nic tutaj nie zgłosił. Bądź pierwszy i <a href=\"%(url)s"
 "\">wyślij zgłoszenie</a>!"
+
+#: templates/djangovoice/sidebar.html:1
+msgid "Status"
+msgstr "Status"
+
+#: templates/djangovoice/sidebar.html:10
+msgid "Type"
+msgstr "Rodzaj"
 
 #: templates/djangovoice/submit.html:18
 msgid "Submit"
