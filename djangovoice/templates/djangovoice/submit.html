@@ -1,12 +1,12 @@
-
-
 {% extends "djangovoice/feedback_base.html" %}
+
+{% load i18n %}
 
 {% block title %}Feedback{% endblock %}
 {% block location %}Feedback{% endblock %}
 
 {% block content %}
-<h1>Feedback</h1>
+<h1>{% trans 'Submit feedback' %}</h1>
 
 <form action="{% url djangovoice_submit %}" method="post">
 <table>
@@ -15,7 +15,7 @@
 {% endfor %}
     <tr>
         <td></td>
-        <td><br /><input type="submit" value="Submit" /></td>
+        <td><br /><input type="submit" value="{% trans 'Submit' %}" /></td>
     </tr>
 
 </table>

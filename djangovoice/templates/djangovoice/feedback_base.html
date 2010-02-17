@@ -17,12 +17,12 @@
                         <li{% ifequal navigation_active 'open' %} class="active"{% endifequal %}><a href="{% url djangovoice_list 'open' %}">{% trans "Open" %}</a></li>
                         <li{% ifequal navigation_active 'closed' %} class="active"{% endifequal %}><a href="{% url djangovoice_list 'closed' %}">{% trans "Closed" %}</a></li>
                         <li{% ifequal navigation_active 'mine' %} class="active"{% endifequal %}><a href="{% url djangovoice_list 'mine' %}">{% trans "Mine" %}</a></li>
-                        <li class="feed-link"><a href="/feeds/feedback/" title="{% trans "Subscribe to the feedback RSS feed" %}"><img src="{{ media_url }}djangovoice/images/rss.png" alt="RSS" /></a></li>
+{#                        <li class="feed-link"><a href="/feeds/feedback/" title="{% trans "Subscribe to the feedback RSS feed" %}"><img src="{{ MEDIA_URL }}djangovoice/images/rss.png" alt="RSS" /></a></li> #}
                     {% endblock %}
                 </ul>
             </div>
             <div id="title">
-                <a href="{% url djangovoice_home %}">{{ site.name }} Feedback</a>
+                <a href="{% url djangovoice_home %}">{% trans 'Feedback' %}</a>
             </div>
         </div>
         <div id="actions">

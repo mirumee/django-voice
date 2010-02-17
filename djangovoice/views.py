@@ -41,7 +41,10 @@ def list(request, list=False, type=False, status=False):
         feedback = feedback.filter(status__status='closed')
     elif list == "mine":
         title = "My Feedback"
-        feedback = feedback.filter(user=request.user)
+        if request.user.is_authenticated():
+            feedback = feedback.filter(user=request.user)
+        else:
+            feedback = feedback.none()
     
     if not type:
         type = "all"
