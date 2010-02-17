@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FULL NAME <EMAIL@ADDRESS>, 2010.
+# Patryk Zawadzki <patrys@pld-linux.org>, 2010.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-16 15:18+0100\n"
+"PO-Revision-Date: 2010-02-16 15:23+0100\n"
+"Last-Translator: Patryk Zawadzki <patrys@pld-linux.org>\n"
+"Language-Team: Polski <patrys@pld-linux.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==0 ? 0 : n==1 ? 1 : n%10>=2 && n%10<=4 "
+"&& (n%100<10 || n%100>=20) ? 2 : 3);\n"
+
+#: models.py:12 models.py:48
+msgid "title"
+msgstr "tytuł"
+
+#: models.py:13
+msgid "slug"
+msgstr "skrót"
+
+#: models.py:14
+msgid "default"
+msgstr "domyślny"
+
+#: models.py:14
+msgid "New feedback will have this status"
+msgstr "Nowe zgłoszenia będą miały ten status"
+
+#: models.py:15 models.py:18
+msgid "status"
+msgstr "status"
+
+#: models.py:19
+msgid "statuses"
+msgstr "statusy"
+
+#: models.py:39
+msgid "type"
+msgstr "rodzaj"
+
+#: models.py:40
+msgid "types"
+msgstr "rodzaje"
+
+#: models.py:49
+msgid "description"
+msgstr "opis"
+
+#: models.py:49
+msgid ""
+"This will be viewable by other people - do not include any private details "
+"such as passwords or phone numbers here."
+msgstr ""
+"Te informacje będą widoczne dla innych ludzi - upewnij się, że nie zawierają "
+"żadnych prywatnych danych, takich jak hasła czy numery telefonów."
+
+#: models.py:50
+msgid "anonymous"
+msgstr "anonimowe"
+
+#: models.py:50
+msgid "Do not show who sent this"
+msgstr "Nie pokazuj, kto wysłał to zgłoszenie"
+
+#: models.py:51
+msgid "private"
+msgstr "prywatne"
+
+#: models.py:51
+msgid ""
+"Hide from public pages. Only site administrators will be able to view and "
+"respond to this."
+msgstr ""
+"Ukryj na stronach publicznych. Tylko administratorzy będą mogli zobaczyć i "
+"odpowiedzieć na to zgłoszenie."
+
+#: models.py:53
+msgid "created"
+msgstr "utworzone"
+
+#: models.py:58
+msgid "feedback"
+msgstr "zgłoszenie"
+
+#: models.py:59
+msgid "feedbacks"
+msgstr "zgłoszenia"
+
+#: templates/djangovoice/delete.html:11
+msgid "Delete Permenantly"
+msgstr "Usuń trwale"
+
+#: templates/djangovoice/detail.html:8 templates/djangovoice/detail.html:12
+msgid "Edit"
+msgstr "Edytuj"
+
+#: templates/djangovoice/detail.html:9 templates/djangovoice/detail.html:13
+msgid "Delete"
+msgstr "Usuń"
+
+#: templates/djangovoice/detail.html:26
+#, python-format
+msgid "Duplicate of <a href=\"%(url)s\">%(title)s</a>"
+msgstr "Duplikat <a href=\"%(url)s\">%(title)s</a>"
+
+#: templates/djangovoice/detail.html:32
+#, python-format
+msgid "%(votes)s vote"
+msgid_plural "%(votes)s votes"
+msgstr[0] "%(votes)s głos"
+msgstr[1] "%(votes)s głosy"
+msgstr[2] "%(votes)s głosów"
+msgstr[3] "%(votes)s głosów"
+
+#: templates/djangovoice/detail.html:49
+msgid "Submitted by"
+msgstr "Zgłoszone przez"
+
+#: templates/djangovoice/detail.html:49
+msgid "Submitted anonymously"
+msgstr "Zgłoszone anonimowo"
+
+#: templates/djangovoice/detail.html:49 templates/djangovoice/detail.html:78
+#, python-format
+msgid "on %(date)s"
+msgstr "%(date)s"
+
+#: templates/djangovoice/detail.html:59
+msgid "Comments"
+msgstr "Komentarze"
+
+#: templates/djangovoice/detail.html:78
+msgid "From"
+msgstr "Od"
+
+#: templates/djangovoice/detail.html:78
+msgid "you"
+msgstr "ciebie"
+
+#: templates/djangovoice/detail.html:87
+msgid "No one has commented. Have your say."
+msgstr "Nikt jeszcze nie skomentował, bądź pierwszy."
+
+#: templates/djangovoice/detail.html:91
+msgid "Leave a comment"
+msgstr "Zostaw komentarz"
+
+#: templates/djangovoice/edit.html:13
+msgid "Save"
+msgstr "Zapisz"
+
+#: templates/djangovoice/feedback_base.html:5
+msgid "Latest feedback"
+msgstr "Ostatnie zgłoszenia"
+
+#: templates/djangovoice/feedback_base.html:16
+msgid "All"
+msgstr "Wszystkie"
+
+#: templates/djangovoice/feedback_base.html:17
+msgid "Open"
+msgstr "Otwarte"
+
+#: templates/djangovoice/feedback_base.html:18
+msgid "Closed"
+msgstr "Zamknięte"
+
+#: templates/djangovoice/feedback_base.html:19
+msgid "Mine"
+msgstr "Moje"
+
+#: templates/djangovoice/feedback_base.html:25
+msgid "Feedback"
+msgstr "Odzew"
+
+#: templates/djangovoice/feedback_base.html:30
+#: templates/djangovoice/submit.html:9
+msgid "Submit feedback"
+msgstr "Wyślij zgłoszenie"
+
+#: templates/djangovoice/list.html:42
+msgid "first"
+msgstr "pierwsza"
+
+#: templates/djangovoice/list.html:43
+msgid "previous"
+msgstr "poprzednia"
+
+#: templates/djangovoice/list.html:47
+msgid "Page"
+msgstr "Strona"
+
+#: templates/djangovoice/list.html:47
+msgid "of"
+msgstr "z"
+
+#: templates/djangovoice/list.html:51
+msgid "next"
+msgstr "następna"
+
+#: templates/djangovoice/list.html:52
+msgid "last"
+msgstr "ostatnia"
+
+#: templates/djangovoice/submit.html:18
+msgid "Submit"
+msgstr "Wyślij"
+
+#: templates/djangovoice/includes/fields.html:2
+msgid "required"
+msgstr "wymagane"
+
+#~ msgid "Subscribe to the feedback RSS feed"
+#~ msgstr "Subskrybuj kanał RSS odpowiedzi"
+
+#~ msgid "1 vote"
+#~ msgid_plural "%(votes)s votes"
+#~ msgstr[0] "%(votes)s głos"
+#~ msgstr[1] "%(votes)s głosy"
+#~ msgstr[2] "%(votes)s głosów"
+#~ msgstr[3] "%(votes)s głosów"
+
+#~ msgid "from<br />1 vote"
+#~ msgid_plural "from<br />%(votes)s votes"
+#~ msgstr[0] "na podstawie<br />1 głosu"
+#~ msgstr[1] "na podstawie<br />%(votes)s głosów"
+#~ msgstr[2] "na podstawie<br />%(votes)s głosów"
+#~ msgstr[3] "na podstawie<br />%(votes)s głosów"
