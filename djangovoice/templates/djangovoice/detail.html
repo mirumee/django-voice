@@ -4,11 +4,11 @@
 
 {% block title %}Feedback{% endblock %}
 
-{% block actions %}{% if request.user.is_staff %}
+{% block actions %}{% if user.is_staff %}
     <li><a href="{% url djangovoice_edit feedback.id %}">{% trans 'Edit' %} &rarr;</a></li>
     <li><a href="{% url djangovoice_delete feedback.id %}">{% trans 'Delete' %} &rarr;</a></li>
 {% else %}
-    {% ifequal request.user feedback.user %}
+    {% ifequal user feedback.user %}
         <li><a href="{% url djangovoice_edit feedback.id %}">{% trans 'Edit' %} &rarr;</a></li>
         <li><a href="{% url djangovoice_delete feedback.id %}">{% trans 'Delete' %} &rarr;</a></li>
     {% endifequal %}
@@ -87,7 +87,7 @@
     <p>{% trans 'No one has commented. Have your say.' %}</p>
 {% endif %}
 
-{% if request.user.is_authenticated %}
+{% if user.is_authenticated %}
 <h2>{% trans 'Leave a comment' %}</h2>
 {% get_comment_form for feedback as form %}
     <form action="{% comment_form_target %}" method="POST"> 
